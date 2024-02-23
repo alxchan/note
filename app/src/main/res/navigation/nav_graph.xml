@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cards">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.example.login.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment3"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.example.login.card.EditFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_edit">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment2"
+            app:destination="@id/blankFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_cards"
+            app:destination="@id/cards" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.login.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/action_blankFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cards"
+        android:name="com.example.login.card.cards"
+        android:label="cards" >
+        <action
+            android:id="@+id/action_cards_to_SecondFragment"
+            app:destination="@id/SecondFragment" >
+            <argument
+                android:name="getID"
+                app:argType="integer"/>
+        </action>
+        <action
+            android:id="@+id/action_cards_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_cards_to_addWorkspace2"
+            app:destination="@id/addWorkspace2" />
+        <action
+            android:id="@+id/action_cards_to_editWorkspace"
+            app:destination="@id/editWorkspace" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.login.card.AddFragment"
+        android:label="AddFragment" >
+        <action
+            android:id="@+id/action_addFragment_to_cards"
+            app:destination="@id/cards" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWorkspace2"
+        android:name="com.example.login.card.addWorkspace"
+        android:label="addWorkspace" >
+        <action
+            android:id="@+id/action_addWorkspace2_to_cards"
+            app:destination="@id/cards" />
+    </fragment>
+    <fragment
+        android:id="@+id/editWorkspace"
+        android:name="com.example.login.card.workspaces.editWorkspace"
+        android:label="editWorkspace" >
+        <action
+            android:id="@+id/action_editWorkspace_to_cards"
+            app:destination="@id/cards" />
+    </fragment>
+</navigation>

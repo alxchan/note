@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id = "@+id/parentCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+<!--            v means that is only for viewing-->
+    <TextView
+        android:id = "@+id/itemv"
+        android:textColor="@color/white"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf = "parent"
+        app:layout_constraintLeft_toLeftOf = "parent"/>
+    <TextView
+        android:id = "@+id/descriptionv"
+        android:textColor="@color/white"
+        android:paddingBottom="5dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/itemv"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView
+        android:id = "@+id/timeSlotv"
+        android:textColor="@color/white"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionv"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+<!--    <Button-->
+<!--        android:backgroundTint="@color/black"-->
+<!--        android:id="@+id/submit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:text="Submit"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/itemv"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:cornerRadius = "0dp"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
