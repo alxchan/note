@@ -45,11 +45,11 @@ class EditFragment : Fragment(), CardAdapter.CardClickListener {
         binding.color.setText(viewModel.getCardInfo(argumentValue).color)
         cardAdapter = CardAdapter(this)
         binding.submit.setOnClickListener {
-            viewModel.modifyCard(cardInfo(argumentValue+1, binding.item.text.toString(), binding.description.text.toString(), binding.timeSlot.text.toString(), binding.color.text.toString(),viewModel.currentWorkspace))
+            viewModel.modifyCard(cardInfo(argumentValue+1, binding.item.text.toString(), binding.description.text.toString(), binding.timeSlot.text.toString(), binding.color.text.toString(),viewModel.currentWorkspace), viewModel.getCardInfo(argumentValue))
             findNavController().navigate(R.id.cards)
         }
         binding.delete.setOnClickListener{
-            viewModel.deleteCard(argumentValue)
+            viewModel.deleteCard(viewModel.getCardInfo(argumentValue))
             cardAdapter.notifyItemChanged(argumentValue)
             findNavController().navigate(R.id.cards)
         }

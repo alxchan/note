@@ -46,19 +46,23 @@ class CardViewModel(application: Application) : AndroidViewModel(application){
         }
         return ""
     }
-    fun deleteCard(id: Int){
+    fun deleteCard(cardInfo: cardInfo){
+        _cardList.value = parseDataCard(readFile(context, "card.txt"), true)
+        Log.d("afterWriting", _cardList.value.toString())
         val currentList : MutableList<cardInfo> = _cardList.value.orEmpty().toMutableList()
-        currentList.remove(getCardInfo(id))
+        currentList.remove(cardInfo)
         _cardList.value = currentList
         writeCard(context,"card.txt", "${_cardList.value}")
+        Log.d("afterWriting", _cardList.value.toString())
+        _cardList.value = parseDataCard(readFile(context,"card.txt"))
     }
-    private fun parseDataCard(data: String): MutableList<cardInfo>{
+    private fun parseDataCard(data: String, entireList: Boolean = false): MutableList<cardInfo>{
         val infoList = mutableListOf<cardInfo>()
         val regex = """cardInfo\(id=(\d*), item=([^,]*), description=([^)]*), time=([^)]*), color=([^)]*), workspace=([^)]*)\)""".toRegex()
         // ([\d:]+) for items like 7:00
         regex.findAll(data).forEach {
             val (id,item,description,time, color, workspace) = it.destructured
-            if(currentWorkspace == workspace.trim()){
+            if(currentWorkspace == workspace.trim() || entireList){
             infoList.add(cardInfo(id.toInt(),item.trim(), description.trim(), time.trim(), color.trim(), workspace.trim()))
             }
         }
@@ -111,14 +115,16 @@ fun getCardInfo(id: Int): cardInfo {
         writeCard(context, "workspace.txt", "$workspaceInfo", true)
     }
 
-    fun modifyCard(updatedCard: cardInfo){
+    fun modifyCard(updatedCard: cardInfo, currentcardInfo: cardInfo){
+        _cardList.value = parseDataCard(readFile(context, "card.txt"), true)
         val currentList : MutableList<cardInfo> = _cardList.value.orEmpty().toMutableList()
-        val index = currentList.indexOfFirst {it.id == updatedCard.id}
+        val index = currentList.indexOfFirst { it == currentcardInfo }
         if(index != -1){
             currentList[index] = updatedCard
             _cardList.value = currentList.toMutableList()
             writeCard(context,"card.txt" , "${_cardList.value}")
         }
+        _cardList.value = parseDataCard(readFile(context,"card.txt"))
     }
 
 }
